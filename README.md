@@ -1,1 +1,10 @@
 # Clase30-Back
+
+# .ENV Keys:
+
+PORT = 8080
+SECRET= 'Sp1d3rm4n'
+MONGO_URL = '';
+CLIENT_ID_GITHUB = '';
+CLIENT_SECRET_GITHUB =''; 
+CALL_BACK_URL_GITHUB = '';
