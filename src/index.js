@@ -64,7 +64,12 @@ app.use('/realTimeProducts', routesRealTime)
 // Chat
 const routesChat = require('./routes/chat.route')
 app.use('/chat', routesChat)
-
+// Mailing
+const emailRoute = require('./routes/email.route')
+app.use('/api/email', emailRoute)
+// Twilio
+const smsRoute = require('./routes/sms.route')
+app.use('/api/sms', smsRoute)
 
 // Handlebars
 const handlebars = require('express-handlebars')
@@ -160,6 +165,8 @@ io.on('connection', (socket)=>{
     })
 
 })
+
+
 
 app.get('/', (req,res)=> {  
     if(req.session.user){

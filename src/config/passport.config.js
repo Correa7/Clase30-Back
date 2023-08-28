@@ -64,10 +64,10 @@ const initializePassport = () => {
         })
     ),
     passport.use('auth-github', new gitHubStrategy(
-        {
-            clientID: '4612e26dbfd329ebc15e', 
-            clientSecret:  '4917423b1c6a348777c89f4b4f3af291e2dd5578',
-            callbackURL: 'http://localhost:8080/auth/github/callback'
+        { 
+            clientID: githubClientId, 
+            clientSecret:  githubSecret,
+            callbackURL: githubCallBack
         },
         async (accessToken, refreshToken, profile, done)=>{
             try{
@@ -106,7 +106,6 @@ const initializePassport = () => {
                     return done(null, userCreated);
                 } else {
                 console.log('User already exists');
-                console.log('Esto client id es de github :' + githubClientId,' secret git :' + githubSecret)
                 return done(null, user);
                 }
             }
