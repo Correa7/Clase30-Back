@@ -1,9 +1,9 @@
-const express = require('express')
+const express = require('express') 
 const app = express()
 const {port, mongoUrl, secret} = require('./config/env.config')
 
 //Mongo
-const DataBase= require('./dao/mongo/db')
+const DataBase= require('./utils/mongo')
 const Product= require('./dao/mongo/models/products.model')
 const Chat= require('./dao/mongo/models/chat.model')
 
@@ -37,6 +37,9 @@ app.use(passport.session())
  
 
 // Routes
+// Views
+// const routesViews = require('./routes/views.route');
+// app.use('/', routesViews)
 //Products
 const routesProduct = require('./routes/products.route')
 app.use('/api/product', routesProduct)
@@ -46,7 +49,7 @@ app.use('/products',viewsProducts)
 const routesCart = require('./routes/cart.route') 
 app.use('/api/cart', routesCart)
 const viewsCart = require('./routes/cart.route.view')
-app.use('/cart', viewsCart)
+app.use('/cart', viewsCart)  
 // Users
 const routesUsers = require('./routes/user.route')
 app.use('/api/user',routesUsers)
@@ -70,7 +73,9 @@ app.use('/api/email', emailRoute)
 // Twilio
 const smsRoute = require('./routes/sms.route')
 app.use('/api/sms', smsRoute)
-
+// Mcks
+const mocksRoute = require('./routes/mocks.route')
+app.use('/api/mocks', mocksRoute)
 // Handlebars
 const handlebars = require('express-handlebars')
 app.engine('handlebars', handlebars.engine())
@@ -165,8 +170,6 @@ io.on('connection', (socket)=>{
     })
 
 })
-
-
 
 app.get('/', (req,res)=> {  
     if(req.session.user){
